@@ -1,0 +1,46 @@
+[2024-12-06T05:08:36.973+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-12-06T05:08:37.676+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_stacked_table manual__2024-12-06T05:02:30.153018+00:00 [queued]>
+[2024-12-06T05:08:37.741+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_stacked_table manual__2024-12-06T05:02:30.153018+00:00 [queued]>
+[2024-12-06T05:08:37.759+0000] {taskinstance.py:2866} INFO - Starting attempt 2 of 6
+[2024-12-06T05:08:37.819+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): insert_into_stacked_table> on 2024-12-06 05:02:30.153018+00:00
+[2024-12-06T05:08:37.844+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=2731) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-12-06T05:08:37.848+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator_v02', 'insert_into_stacked_table', 'manual__2024-12-06T05:02:30.153018+00:00', '--job-id', '611', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpbng2dagz']
+[2024-12-06T05:08:37.857+0000] {standard_task_runner.py:72} INFO - Started process 2749 to run task
+[2024-12-06T05:08:37.880+0000] {standard_task_runner.py:105} INFO - Job 611: Subtask insert_into_stacked_table
+[2024-12-06T05:08:38.092+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator_v02.insert_into_stacked_table manual__2024-12-06T05:02:30.153018+00:00 [running]> on host 9ed27289a118
+[2024-12-06T05:08:38.403+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='coder2j' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator_v02' AIRFLOW_CTX_TASK_ID='insert_into_stacked_table' AIRFLOW_CTX_EXECUTION_DATE='2024-12-06T05:02:30.153018+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-06T05:02:30.153018+00:00'
+[2024-12-06T05:08:38.408+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-12-06T05:08:38.421+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-12-06T05:08:38.432+0000] {logging_mixin.py:190} INFO - Current task name:insert_into_stacked_table state:running start_date:2024-12-06 05:08:37.704853+00:00
+[2024-12-06T05:08:38.435+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator_v02 and current dag run status:running
+[2024-12-06T05:08:38.436+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-12-06T05:08:38.437+0000] {sql.py:278} INFO - Executing: 
+            INSERT INTO Stacked (CostofRevenue,Year, OperatingExpense, ResearchandDevelopment, SGA, Company)
+            VALUES
+                (52232000000.0, 2021, 5107000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (62650000000.0, 2022, 5900000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (65863000000.0, 2023, 7575000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (74114000000.0, 2024, 7609000000.0, 7609000000.0, 171008000000.0, 'Microsoft');
+        
+[2024-12-06T05:08:38.462+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2024-12-06T05:08:38.509+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2024-12-06T05:08:38.531+0000] {sql.py:544} INFO - Running statement: 
+            INSERT INTO Stacked (CostofRevenue,Year, OperatingExpense, ResearchandDevelopment, SGA, Company)
+            VALUES
+                (52232000000.0, 2021, 5107000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (62650000000.0, 2022, 5900000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (65863000000.0, 2023, 7575000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (74114000000.0, 2024, 7609000000.0, 7609000000.0, 171008000000.0, 'Microsoft');
+        , parameters: None
+[2024-12-06T05:08:38.578+0000] {sql.py:553} INFO - Rows affected: 4
+[2024-12-06T05:08:38.616+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-12-06T05:08:38.619+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=dag_with_postgres_operator_v02, task_id=insert_into_stacked_table, run_id=manual__2024-12-06T05:02:30.153018+00:00, execution_date=20241206T050230, start_date=20241206T050837, end_date=20241206T050838
+[2024-12-06T05:08:38.670+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-12-06T05:08:38.673+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-12-06T05:08:38.682+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator_v02 queued_at:2024-12-06 05:02:30.432509+00:00
+[2024-12-06T05:08:38.684+0000] {logging_mixin.py:190} INFO - Task hostname:9ed27289a118 operator:PostgresOperator
+[2024-12-06T05:08:38.772+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2024-12-06T05:08:38.956+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-12-06T05:08:38.975+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
