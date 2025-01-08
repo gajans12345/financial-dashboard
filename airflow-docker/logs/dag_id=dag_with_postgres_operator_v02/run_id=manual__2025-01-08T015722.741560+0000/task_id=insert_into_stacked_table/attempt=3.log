@@ -1,0 +1,146 @@
+[2025-01-08T02:07:42.103+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-08T02:07:42.168+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_stacked_table manual__2025-01-08T01:57:22.741560+00:00 [queued]>
+[2025-01-08T02:07:42.207+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_stacked_table manual__2025-01-08T01:57:22.741560+00:00 [queued]>
+[2025-01-08T02:07:42.208+0000] {taskinstance.py:2866} INFO - Starting attempt 3 of 6
+[2025-01-08T02:07:42.258+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): insert_into_stacked_table> on 2025-01-08 01:57:22.741560+00:00
+[2025-01-08T02:07:42.278+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator_v02', 'insert_into_stacked_table', 'manual__2025-01-08T01:57:22.741560+00:00', '--job-id', '721', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpk87meg5s']
+[2025-01-08T02:07:42.285+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=9386) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-01-08T02:07:42.292+0000] {standard_task_runner.py:72} INFO - Started process 9467 to run task
+[2025-01-08T02:07:42.281+0000] {standard_task_runner.py:105} INFO - Job 721: Subtask insert_into_stacked_table
+[2025-01-08T02:07:42.405+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator_v02.insert_into_stacked_table manual__2025-01-08T01:57:22.741560+00:00 [running]> on host ec6dd3d48f26
+[2025-01-08T02:07:42.605+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='coder2j' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator_v02' AIRFLOW_CTX_TASK_ID='insert_into_stacked_table' AIRFLOW_CTX_EXECUTION_DATE='2025-01-08T01:57:22.741560+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-08T01:57:22.741560+00:00'
+[2025-01-08T02:07:42.610+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-08T02:07:42.611+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-08T02:07:42.613+0000] {logging_mixin.py:190} INFO - Current task name:insert_into_stacked_table state:running start_date:2025-01-08 02:07:42.171027+00:00
+[2025-01-08T02:07:42.613+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator_v02 and current dag run status:running
+[2025-01-08T02:07:42.614+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-08T02:07:42.615+0000] {sql.py:278} INFO - Executing: 
+            INSERT INTO Stacked (CostofRevenue,Year, OperatingExpense, ResearchandDevelopment, SGA, Company)
+            VALUES
+                (52232000000.0, 2021, 5107000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (62650000000.0, 2022, 5900000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (65863000000.0, 2023, 7575000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (74114000000.0, 2024, 7609000000.0, 7609000000.0, 171008000000.0, 'Microsoft'),
+                
+                (31797000000.0, 2021, 28453000000.0, 117000000.0 , 28453000000.0, 'Pepsico'),
+                (37075000000.0, 2022, 31237000000.0, 522000000.0, 31237000000.0, 'Pepsico'),
+                (40576000000.0, 2023, 34459000000.0, 132000000.0 , 34459000000.0, 'Pepsico'),
+                (41881000000.0, 2024, 36677000000.0, 250000000.0, 36677000000.0, 'Pepsico'),
+
+                (7970000000.0, 2021, 1670000000.0, 354000000.0, 1564000000.0, 'BlackRock'),
+                (9650000000.0, 2022, 9650000000.0, 803000000.0, 1821000000.0, 'BlackRock'),
+                (9179000000.0, 2023, 1938000000.0, 7575000000.0, 1787000000.0, 'BlackRock'),
+                (9236000000.0, 2024, 2014000000.0, 641000000.0, 1863000000.0, 'BlackRock');
+        
+[2025-01-08T02:07:42.656+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2025-01-08T02:07:42.705+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2025-01-08T02:07:42.725+0000] {sql.py:544} INFO - Running statement: 
+            INSERT INTO Stacked (CostofRevenue,Year, OperatingExpense, ResearchandDevelopment, SGA, Company)
+            VALUES
+                (52232000000.0, 2021, 5107000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (62650000000.0, 2022, 5900000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (65863000000.0, 2023, 7575000000.0, 7575000000.0, 171008000000.0, 'Microsoft'),
+                (74114000000.0, 2024, 7609000000.0, 7609000000.0, 171008000000.0, 'Microsoft'),
+                
+                (31797000000.0, 2021, 28453000000.0, 117000000.0 , 28453000000.0, 'Pepsico'),
+                (37075000000.0, 2022, 31237000000.0, 522000000.0, 31237000000.0, 'Pepsico'),
+                (40576000000.0, 2023, 34459000000.0, 132000000.0 , 34459000000.0, 'Pepsico'),
+                (41881000000.0, 2024, 36677000000.0, 250000000.0, 36677000000.0, 'Pepsico'),
+
+                (7970000000.0, 2021, 1670000000.0, 354000000.0, 1564000000.0, 'BlackRock'),
+                (9650000000.0, 2022, 9650000000.0, 803000000.0, 1821000000.0, 'BlackRock'),
+                (9179000000.0, 2023, 1938000000.0, 7575000000.0, 1787000000.0, 'BlackRock'),
+                (9236000000.0, 2024, 2014000000.0, 641000000.0, 1863000000.0, 'BlackRock');
+        , parameters: None
+[2025-01-08T02:07:42.732+0000] {taskinstance.py:3311} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 284, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 489, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 549, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "stacked_pkey"
+DETAIL:  Key (costofrevenue)=(52232000000) already exists.
+
+[2025-01-08T02:07:42.769+0000] {logging_mixin.py:190} INFO - Task instance in failure state
+[2025-01-08T02:07:42.770+0000] {logging_mixin.py:190} INFO - Task start:2025-01-08 02:07:42.171027+00:00 end:2025-01-08 02:07:42.766224+00:00 duration:0.595197
+[2025-01-08T02:07:42.772+0000] {logging_mixin.py:190} INFO - Task:<Task(PostgresOperator): insert_into_stacked_table> dag:<DAG: dag_with_postgres_operator_v02> dagrun:<DagRun dag_with_postgres_operator_v02 @ 2025-01-08 01:57:22.741560+00:00: manual__2025-01-08T01:57:22.741560+00:00, state:running, queued_at: 2025-01-08 01:57:22.791217+00:00. externally triggered: True>
+[2025-01-08T02:07:42.773+0000] {logging_mixin.py:190} INFO - Failure caused by duplicate key value violates unique constraint "stacked_pkey"
+DETAIL:  Key (costofrevenue)=(52232000000) already exists.
+[2025-01-08T02:07:42.774+0000] {taskinstance.py:1225} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_operator_v02, task_id=insert_into_stacked_table, run_id=manual__2025-01-08T01:57:22.741560+00:00, execution_date=20250108T015722, start_date=20250108T020742, end_date=20250108T020742
+[2025-01-08T02:07:42.840+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-08T02:07:42.843+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 721 for task insert_into_stacked_table (duplicate key value violates unique constraint "stacked_pkey"
+DETAIL:  Key (costofrevenue)=(52232000000) already exists.
+; 9467)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3005, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 273, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3159, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3183, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 767, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 733, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 417, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/operators/sql.py", line 284, in execute
+    output = hook.run(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 489, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 549, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "stacked_pkey"
+DETAIL:  Key (costofrevenue)=(52232000000) already exists.
+
+[2025-01-08T02:07:42.900+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-01-08T02:07:42.977+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-08T02:07:42.990+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

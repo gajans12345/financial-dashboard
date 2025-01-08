@@ -1,0 +1,102 @@
+[2025-01-08T02:17:47.764+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-08T02:17:47.789+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_prices_table manual__2025-01-08T01:57:22.741560+00:00 [queued]>
+[2025-01-08T02:17:47.804+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_postgres_operator_v02.insert_into_prices_table manual__2025-01-08T01:57:22.741560+00:00 [queued]>
+[2025-01-08T02:17:47.805+0000] {taskinstance.py:2866} INFO - Starting attempt 5 of 6
+[2025-01-08T02:17:47.827+0000] {taskinstance.py:2889} INFO - Executing <Task(PostgresOperator): insert_into_prices_table> on 2025-01-08 01:57:22.741560+00:00
+[2025-01-08T02:17:47.851+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=15264) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-01-08T02:17:47.851+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_operator_v02', 'insert_into_prices_table', 'manual__2025-01-08T01:57:22.741560+00:00', '--job-id', '735', '--raw', '--subdir', 'DAGS_FOLDER/dag.py', '--cfg-path', '/tmp/tmpy_qj6ifb']
+[2025-01-08T02:17:47.853+0000] {standard_task_runner.py:72} INFO - Started process 15265 to run task
+[2025-01-08T02:17:47.855+0000] {standard_task_runner.py:105} INFO - Job 735: Subtask insert_into_prices_table
+[2025-01-08T02:17:47.923+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_with_postgres_operator_v02.insert_into_prices_table manual__2025-01-08T01:57:22.741560+00:00 [running]> on host ec6dd3d48f26
+[2025-01-08T02:17:48.039+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='coder2j' AIRFLOW_CTX_DAG_ID='dag_with_postgres_operator_v02' AIRFLOW_CTX_TASK_ID='insert_into_prices_table' AIRFLOW_CTX_EXECUTION_DATE='2025-01-08T01:57:22.741560+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-08T01:57:22.741560+00:00'
+[2025-01-08T02:17:48.042+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-01-08T02:17:48.042+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-01-08T02:17:48.043+0000] {logging_mixin.py:190} INFO - Current task name:insert_into_prices_table state:running start_date:2025-01-08 02:17:47.789855+00:00
+[2025-01-08T02:17:48.043+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator_v02 and current dag run status:running
+[2025-01-08T02:17:48.080+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-08T02:17:48.111+0000] {sql.py:278} INFO - Executing: 
+            INSERT INTO Pricees (Price, Year, Company)
+            VALUES
+                -- (41.167, 2014, 'Microsoft'),
+                -- (38.765, 2015, 'Microsoft'),
+                -- (49.549, 2016, 'Microsoft'),
+                -- (66.172, 2017, 'Microsoft'),
+                -- (94.660, 2018, 'Microsoft'),
+                -- (124.150, 2019, 'Microsoft'),
+                -- (186.04, 2020, 'Microsoft'),
+                -- (268.531, 2021, 'Microsoft'),
+                -- (263.749, 2022, 'Microsoft'),
+                -- (311.033, 2023, 'Microsoft'),
+                -- (417.528, 2024, 'Microsoft'),
+                (73.061, 2014, 'Pepsico'),
+                (73.952, 2015, 'Pepsico'),
+                (81.53, 2016, 'Pepsico'),
+                (91.399, 2017, 'Pepsico'),
+                (92.251, 2018, 'Pepsico'),
+                (110.09, 2019, 'Pepsico'),
+                (120.637, 2020, 'Pepsico'),
+                (137.18, 2021, 'Pepsico'),
+                (160.91, 2022, 'Pepsico'),
+                (170.46, 2023, 'Pepsico'),
+                (168.93, 2024, 'Pepsico'),
+                (272.33, 2014, 'BlackRock'),
+                (281.99, 2015, 'BlackRock'),
+                (349.96, 2016, 'BlackRock'),
+                (415.73, 2017, 'BlackRock'),
+                (389.42, 2018, 'BlackRock'),
+                (499.60, 2019, 'BlackRock'),
+                (773.49, 2020, 'BlackRock'),
+                (643.11, 2021, 'BlackRock'),
+                (666.24, 2022, 'BlackRock'),
+                (856.88, 2023, 'BlackRock'),
+                (1019.1, 2024, 'BlackRock');
+        
+[2025-01-08T02:17:48.140+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2025-01-08T02:17:48.179+0000] {base.py:84} INFO - Retrieving connection 'postgres_localhost'
+[2025-01-08T02:17:48.191+0000] {sql.py:544} INFO - Running statement: 
+            INSERT INTO Pricees (Price, Year, Company)
+            VALUES
+                -- (41.167, 2014, 'Microsoft'),
+                -- (38.765, 2015, 'Microsoft'),
+                -- (49.549, 2016, 'Microsoft'),
+                -- (66.172, 2017, 'Microsoft'),
+                -- (94.660, 2018, 'Microsoft'),
+                -- (124.150, 2019, 'Microsoft'),
+                -- (186.04, 2020, 'Microsoft'),
+                -- (268.531, 2021, 'Microsoft'),
+                -- (263.749, 2022, 'Microsoft'),
+                -- (311.033, 2023, 'Microsoft'),
+                -- (417.528, 2024, 'Microsoft'),
+                (73.061, 2014, 'Pepsico'),
+                (73.952, 2015, 'Pepsico'),
+                (81.53, 2016, 'Pepsico'),
+                (91.399, 2017, 'Pepsico'),
+                (92.251, 2018, 'Pepsico'),
+                (110.09, 2019, 'Pepsico'),
+                (120.637, 2020, 'Pepsico'),
+                (137.18, 2021, 'Pepsico'),
+                (160.91, 2022, 'Pepsico'),
+                (170.46, 2023, 'Pepsico'),
+                (168.93, 2024, 'Pepsico'),
+                (272.33, 2014, 'BlackRock'),
+                (281.99, 2015, 'BlackRock'),
+                (349.96, 2016, 'BlackRock'),
+                (415.73, 2017, 'BlackRock'),
+                (389.42, 2018, 'BlackRock'),
+                (499.60, 2019, 'BlackRock'),
+                (773.49, 2020, 'BlackRock'),
+                (643.11, 2021, 'BlackRock'),
+                (666.24, 2022, 'BlackRock'),
+                (856.88, 2023, 'BlackRock'),
+                (1019.1, 2024, 'BlackRock');
+        , parameters: None
+[2025-01-08T02:17:48.197+0000] {sql.py:553} INFO - Rows affected: 22
+[2025-01-08T02:17:48.239+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-08T02:17:48.260+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=dag_with_postgres_operator_v02, task_id=insert_into_prices_table, run_id=manual__2025-01-08T01:57:22.741560+00:00, execution_date=20250108T015722, start_date=20250108T021747, end_date=20250108T021748
+[2025-01-08T02:17:48.284+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-01-08T02:17:48.286+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-01-08T02:17:48.287+0000] {logging_mixin.py:190} INFO - Dag name:dag_with_postgres_operator_v02 queued_at:2025-01-08 01:57:22.791217+00:00
+[2025-01-08T02:17:48.287+0000] {logging_mixin.py:190} INFO - Task hostname:ec6dd3d48f26 operator:PostgresOperator
+[2025-01-08T02:17:48.315+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-08T02:17:48.356+0000] {taskinstance.py:3895} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-01-08T02:17:48.359+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
