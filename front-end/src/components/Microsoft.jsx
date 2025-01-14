@@ -10,26 +10,26 @@ export function MicrosoftMain(){
              <MicrosoftHeader></MicrosoftHeader >
              </div>
             <div className = "mid">
-              <Statty></Statty>
+              <Statty name = "Stock Price"></Statty>
             </div>
             <div className = "edge"> 
-              <Statty></Statty>
+              <Statty name = "Dividend Rate"></Statty>
             </div>
         
           </div>
 
         <div className = "bottom"> 
             <div className = "t1"> 
-              <Statti></Statti>
+              <Statti name = "Bid-Ask Spread"></Statti>
             </div>
             <div className = "t2"> 
-            <Statti></Statti>
+            <Statti name = "52 Week High"></Statti>
             </div>
             <div className = "t3">
-            <Statti></Statti>
+            <Statti name = "52 Week Low"></Statti>
             </div>
             <div className = "t4">
-            <Statti></Statti>
+            <Statti name = "Peg Ratio"></Statti>
             </div>
         
         </div>
@@ -48,7 +48,7 @@ export function MicrosoftMain(){
 function MicrosoftHeader(){
     return (
         <div className="stock-container">
-      <h1 className="stock-title">Stock Details</h1>
+      <h1 className="stock-title">Microsoft Details</h1>
       <div className="stock-card">
         <div className="stock-header">
             <h2 className="stock-name">Microsoft</h2>
@@ -64,19 +64,24 @@ function MicrosoftHeader(){
     );
 }
 
-function Statty(name,value){
+function Statty({name,value}){
 
   return(
-    <div className = "stock-stats"></div>
+    <div className = "stock-stats"> 
+    <h3>{name}</h3>
+    
 
+    </div>
 
   );
 }
 
-function Statti(name,value){
+function Statti({name,value}){
 
   return(
-    <div className = "sc"></div>
+    <div className = "sc">
+      <h3>{name}</h3>
+    </div>
 
 
   );
