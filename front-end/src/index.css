@@ -219,3 +219,71 @@ code {
   font-weight: 700;
   color: #dc2626;
 }
+
+.metrics-container {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 16px 24px;
+  width: calc(100% - 270px);
+  position: fixed;
+  top: 0;
+  left: 230px;
+  height: 80px;
+}
+
+.company-logo {
+  display: flex;
+  align-items: center;
+  margin-right: 32px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.logo-container p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.metrics-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.metric-card {
+  background: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  border: 1px solid #eef0f2;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.metric-card h3 {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.metric-card p {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+}

@@ -1,88 +1,55 @@
-import React from 'react';
-import { FaMicrosoft } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
 
+export function MicrosoftMain() {
+  const [keyData, setKeyData] = useState({});
 
-export function MicrosoftMain(){
-    return (
-      <div className = "big">
-          <div className = "top"> 
-             <div className = "title"> 
-             <MicrosoftHeader></MicrosoftHeader >
-             </div>
-            <div className = "mid">
-              <Statty name = "Stock Price"></Statty>
-            </div>
-            <div className = "edge"> 
-              <Statty name = "Dividend Rate"></Statty>
-            </div>
-        
+  useEffect(() => {
+    fetchKeyData();
+  }, []);
+
+  const fetchKeyData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/Key');
+      const data = await response.json();
+      setKeyData(data);
+    } catch (error) {
+      console.error('Error fetching key data:', error);
+    }
+  };
+
+  return (
+    <div className="big">
+      <div className="metrics-container">
+        <div className="company-logo">
+          <div className="logo-container">
+            <h2>Microsoft</h2>
+            <p>MSFT</p>
           </div>
-
-        <div className = "bottom"> 
-            <div className = "t1"> 
-              <Statti name = "Bid-Ask Spread"></Statti>
-            </div>
-            <div className = "t2"> 
-            <Statti name = "52 Week High"></Statti>
-            </div>
-            <div className = "t3">
-            <Statti name = "52 Week Low"></Statti>
-            </div>
-            <div className = "t4">
-            <Statti name = "Peg Ratio"></Statti>
-            </div>
-        
         </div>
-
-      </div>
-        
-      
-        
-
-    );
-
-    
-
-}
-
-function MicrosoftHeader(){
-    return (
-        <div className="stock-container">
-      <h1 className="stock-title">Microsoft Details</h1>
-      <div className="stock-card">
-        <div className="stock-header">
-            <h2 className="stock-name">Microsoft</h2>
-            <h2 className = "stock-logo"><FaMicrosoft /></h2>
-       </div>
-            <span className="stock-symbol">MSFT</span>
-            <span className = "blurb"> Microsoft Corporation, founded in 1975 by Bill Gates and Paul Allen, is a global leader in software, services, and technology solutions. </span>
-        
-        
-        
+        <div className="metrics-row">
+          <MetricCard title="STOCK PRICE" value={keyData.currentprice} />
+          <MetricCard title="DIVIDEND RATE" value={keyData.dividendrate} />
+          <MetricCard title="BID-ASK SPREAD" value={keyData.bidaskspread} />
+          <MetricCard title="52 WEEK HIGH" value={keyData.fiftytwoweekhigh} />
+          <MetricCard title="52 WEEK LOW" value={keyData.fiftytwoweeklow} />
+          <MetricCard title="PEG RATIO" value={keyData.pegratio} />
+        </div>
       </div>
     </div>
-    );
-}
-
-function Statty({name,value}){
-
-  return(
-    <div className = "stock-stats"> 
-    <h3>{name}</h3>
-    
-
-    </div>
-
   );
 }
 
-function Statti({name,value}){
+function MetricCard({ title, value }) {
+  const formatValue = (val) => {
+    if (!val) return 'Loading...';
+    const numValue = parseFloat(val);
+    return isNaN(numValue) ? val : `$${numValue.toFixed(2)}`;
+  };
 
-  return(
-    <div className = "sc">
-      <h3>{name}</h3>
+  return (
+    <div className="metric-card">
+      <h3>{title}</h3>
+      <p>{formatValue(value)}</p>
     </div>
-
-
   );
 }
