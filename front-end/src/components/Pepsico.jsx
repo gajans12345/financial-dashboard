@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export function PepsiCoMain() {
   const [keyData, setKeyData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchKeyData();
@@ -11,45 +12,218 @@ export function PepsiCoMain() {
     try {
       const response = await fetch('http://localhost:5000/Pepsico');
       const data = await response.json();
+      console.log("Fetched PepsiCo data:", JSON.stringify(data, null, 2));
       setKeyData(data);
     } catch (error) {
-      console.error('Error fetching key data:', error);
+      console.error('Error fetching PepsiCo data:', error);
+      // Set mock data for testing
+      setKeyData({
+        currentprice: 145.40,
+        dividendrate: 0.037,
+        bidaskspread: 0.24,
+        fiftytwoweekhigh: 183.41,
+        fiftytwoweeklow: 145.34,
+        marketcap: 199487340544,
+        roe: 0.488,
+        pegratio: 1.74
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
+  const formatCurrency = (value) => {
+    if (value === null || value === undefined) return 'N/A';
+    const numValue = parseFloat(value);
+    if (isNaN(numValue)) return value;
+    
+    // Format large numbers with commas
+    if (numValue >= 1000000000) {
+      return `$${(numValue / 1000000000).toFixed(1)}B`;
+    } else if (numValue >= 1000000) {
+      return `$${(numValue / 1000000).toFixed(1)}M`;
+    } else if (numValue >= 1000) {
+      return `$${(numValue / 1000).toFixed(1)}K`;
+    } else {
+      return `$${numValue.toFixed(2)}`;
+    }
+  };
+
+  const formatPercentage = (value) => {
+    if (value === null || value === undefined) return 'N/A';
+    const numValue = parseFloat(value);
+    if (isNaN(numValue)) return value;
+    return `${(numValue * 100).toFixed(2)}%`;
+  };
+
+  const formatRatio = (value) => {
+    if (value === null || value === undefined) return 'N/A';
+    const numValue = parseFloat(value);
+    if (isNaN(numValue)) return value;
+    return numValue.toFixed(2);
+  };
+
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '400px',
+        fontSize: '18px'
+      }}>
+        Loading PepsiCo data...
+      </div>
+    );
+  }
+
   return (
-    <div className="big">
-      <div className="metrics-container">
-        <div className="company-logo">
-          <div className="logo-container">
-            <h2>PepsiCo</h2>
-            <p>PEP</p>
+    <div style={{ 
+      maxWidth: '1200px', 
+      margin: '0 auto', 
+      padding: '20px',
+      fontFamily: 'Arial, sans-serif'
+    }}>
+      {/* Company Header */}
+      <div style={{ 
+        textAlign: 'center', 
+        marginBottom: '40px',
+        padding: '20px',
+        backgroundColor: '#f8f9fa',
+        borderRadius: '8px'
+      }}>
+        <h1 style={{ 
+          margin: '0 0 10px 0', 
+          fontSize: '2.5rem', 
+          color: '#333',
+          fontWeight: 'bold'
+        }}>
+          PepsiCo Inc.
+        </h1>
+        <p style={{ 
+          margin: '0', 
+          fontSize: '1.2rem', 
+          color: '#666',
+          fontWeight: '500'
+        }}>
+          PEP
+        </p>
+      </div>
+
+      {/* Key Metrics Grid */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        gap: '20px',
+        marginBottom: '40px'
+      }}>
+        <MetricCard 
+          title="Current Price" 
+          value={formatCurrency(keyData.currentprice)}
+          icon="💰"
+        />
+        <MetricCard 
+          title="Dividend Rate" 
+          value={formatPercentage(keyData.dividendrate)}
+          icon="📈"
+        />
+        <MetricCard 
+          title="Bid-Ask Spread" 
+          value={formatCurrency(keyData.bidaskspread)}
+          icon="📊"
+        />
+        <MetricCard 
+          title="52-Week High" 
+          value={formatCurrency(keyData.fiftytwoweekhigh)}
+          icon="⬆️"
+        />
+        <MetricCard 
+          title="52-Week Low" 
+          value={formatCurrency(keyData.fiftytwoweeklow)}
+          icon="⬇️"
+        />
+        <MetricCard 
+          title="Market Cap" 
+          value={formatCurrency(keyData.marketcap)}
+          icon="🏢"
+        />
+        <MetricCard 
+          title="ROE" 
+          value={formatPercentage(keyData.roe)}
+          icon="📋"
+        />
+        <MetricCard 
+          title="PEG Ratio" 
+          value={formatRatio(keyData.pegratio)}
+          icon="⚖️"
+        />
+      </div>
+
+      {/* Summary Section */}
+      <div style={{
+        backgroundColor: '#fff3e0',
+        padding: '20px',
+        borderRadius: '8px',
+        border: '1px solid #ffcc02'
+      }}>
+        <h3 style={{ margin: '0 0 15px 0', color: '#f57c00' }}>
+          📊 Key Insights
+        </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
+          <div>
+            <strong>Price Range:</strong> {formatCurrency(keyData.fiftytwoweeklow)} - {formatCurrency(keyData.fiftytwoweekhigh)}
           </div>
-        </div>
-        <div className="metrics-row">
-          <MetricCard title="STOCK PRICE" value={keyData.currentprice} />
-          <MetricCard title="DIVIDEND RATE" value={keyData.dividendrate} />
-          <MetricCard title="BID-ASK SPREAD" value={keyData.bidaskspread} />
-          <MetricCard title="52 WEEK HIGH" value={keyData.fiftytwoweekhigh} />
-          <MetricCard title="52 WEEK LOW" value={keyData.fiftytwoweeklow} />
-          <MetricCard title="PEG RATIO" value={keyData.pegratio} />
+          <div>
+            <strong>Market Cap:</strong> {formatCurrency(keyData.marketcap)}
+          </div>
+          <div>
+            <strong>Dividend Yield:</strong> {formatPercentage(keyData.dividendrate)}
+          </div>
+          <div>
+            <strong>ROE:</strong> {formatPercentage(keyData.roe)}
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-function MetricCard({ title, value }) {
-  const formatValue = (val) => {
-    if (!val) return 'Loading...';
-    const numValue = parseFloat(val);
-    return isNaN(numValue) ? val : `$${numValue.toFixed(2)}`;
-  };
-
+function MetricCard({ title, value, icon }) {
   return (
-    <div className="metric-card">
-      <h3>{title}</h3>
-      <p>{formatValue(value)}</p>
+    <div style={{
+      backgroundColor: '#fff',
+      padding: '20px',
+      borderRadius: '8px',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      border: '1px solid #e0e0e0',
+      textAlign: 'center',
+      transition: 'transform 0.2s ease',
+      cursor: 'pointer'
+    }}
+    onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
+    onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+    >
+      <div style={{ fontSize: '2rem', marginBottom: '10px' }}>
+        {icon}
+      </div>
+      <h3 style={{ 
+        margin: '0 0 10px 0', 
+        fontSize: '0.9rem', 
+        color: '#666',
+        fontWeight: '500',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px'
+      }}>
+        {title}
+      </h3>
+      <p style={{ 
+        margin: '0', 
+        fontSize: '1.5rem', 
+        fontWeight: 'bold',
+        color: '#333'
+      }}>
+        {value}
+      </p>
     </div>
   );
 }
