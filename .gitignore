@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+*/node_modules/
+flask-server/venv/
+*/venv/
+
+# Logs
+airflow-docker/logs/
+*.log
+
+# Cache files
+front-end/node_modules/.cache/
+.cache/
+*.cache
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+build/
+dist/
+*.tgz
+*.tar.gz
+
+# Temporary files
+*.tmp
+*.temp
