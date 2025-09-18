@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PriceChart from './PriceChart';
 
 export function BlackRockMain() {
   const [keyData, setKeyData] = useState({});
@@ -10,23 +11,13 @@ export function BlackRockMain() {
 
   const fetchKeyData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/BlackRock');
+      const response = await fetch('http://localhost:5000/key/BlackRock');
+      if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       console.log("Fetched BlackRock data:", JSON.stringify(data, null, 2));
       setKeyData(data);
     } catch (error) {
       console.error('Error fetching BlackRock data:', error);
-      // Set mock data for testing
-      setKeyData({
-        currentprice: 501.00,
-        dividendrate: 0.021,
-        bidaskspread: 0.15,
-        fiftytwoweekhigh: 580.25,
-        fiftytwoweeklow: 450.30,
-        marketcap: 750000000000,
-        roe: 0.18,
-        pegratio: 1.77
-      });
     } finally {
       setLoading(false);
     }
@@ -124,7 +115,7 @@ export function BlackRockMain() {
         />
         <MetricCard 
           title="Dividend Rate" 
-          value={formatPercentage(keyData.dividendrate)}
+          value={formatPercentage((keyData.dividendrate ?? 0) / 100)}
           icon="📈"
         />
         <MetricCard 
@@ -159,31 +150,7 @@ export function BlackRockMain() {
         />
       </div>
 
-      {/* Summary Section */}
-      <div style={{
-        backgroundColor: '#e8f5e8',
-        padding: '20px',
-        borderRadius: '8px',
-        border: '1px solid #c8e6c9'
-      }}>
-        <h3 style={{ margin: '0 0 15px 0', color: '#2e7d32' }}>
-          📊 Key Insights
-        </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
-          <div>
-            <strong>Price Range:</strong> {formatCurrency(keyData.fiftytwoweeklow)} - {formatCurrency(keyData.fiftytwoweekhigh)}
-          </div>
-          <div>
-            <strong>Market Cap:</strong> {formatCurrency(keyData.marketcap)}
-          </div>
-          <div>
-            <strong>Dividend Yield:</strong> {formatPercentage(keyData.dividendrate)}
-          </div>
-          <div>
-            <strong>ROE:</strong> {formatPercentage(keyData.roe)}
-          </div>
-        </div>
-      </div>
+      <PriceChart company="BlackRock" />
     </div>
   );
 }

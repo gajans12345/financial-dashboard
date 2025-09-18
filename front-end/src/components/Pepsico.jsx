@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PriceChart from './PriceChart';
 
 export function PepsiCoMain() {
   const [keyData, setKeyData] = useState({});
@@ -10,23 +11,13 @@ export function PepsiCoMain() {
 
   const fetchKeyData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/Pepsico');
+      const response = await fetch('http://localhost:5000/key/Pepsico');
+      if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       console.log("Fetched PepsiCo data:", JSON.stringify(data, null, 2));
       setKeyData(data);
     } catch (error) {
       console.error('Error fetching PepsiCo data:', error);
-      // Set mock data for testing
-      setKeyData({
-        currentprice: 145.40,
-        dividendrate: 0.037,
-        bidaskspread: 0.24,
-        fiftytwoweekhigh: 183.41,
-        fiftytwoweeklow: 145.34,
-        marketcap: 199487340544,
-        roe: 0.488,
-        pegratio: 1.74
-      });
     } finally {
       setLoading(false);
     }
@@ -124,7 +115,7 @@ export function PepsiCoMain() {
         />
         <MetricCard 
           title="Dividend Rate" 
-          value={formatPercentage(keyData.dividendrate)}
+          value={formatPercentage((keyData.dividendrate ?? 0) / 100)}
           icon="📈"
         />
         <MetricCard 
@@ -159,31 +150,7 @@ export function PepsiCoMain() {
         />
       </div>
 
-      {/* Summary Section */}
-      <div style={{
-        backgroundColor: '#fff3e0',
-        padding: '20px',
-        borderRadius: '8px',
-        border: '1px solid #ffcc02'
-      }}>
-        <h3 style={{ margin: '0 0 15px 0', color: '#f57c00' }}>
-          📊 Key Insights
-        </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
-          <div>
-            <strong>Price Range:</strong> {formatCurrency(keyData.fiftytwoweeklow)} - {formatCurrency(keyData.fiftytwoweekhigh)}
-          </div>
-          <div>
-            <strong>Market Cap:</strong> {formatCurrency(keyData.marketcap)}
-          </div>
-          <div>
-            <strong>Dividend Yield:</strong> {formatPercentage(keyData.dividendrate)}
-          </div>
-          <div>
-            <strong>ROE:</strong> {formatPercentage(keyData.roe)}
-          </div>
-        </div>
-      </div>
+      <PriceChart company="Pepsico" />
     </div>
   );
 }

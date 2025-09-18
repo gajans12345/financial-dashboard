@@ -9,7 +9,7 @@ CORS(app) # Allow react on different port to access flask
 
 # DB INFO
 DB_HOST = "localhost"
-DB_PORT = "5433"
+DB_PORT = "5432"
 DB_NAME = "airflow"
 DB_USER = "airflow"
 DB_PASSWORD = "airflow"
@@ -60,6 +60,30 @@ def key():
         })
     return jsonify({})
 
+@app.route('/key/<company>', methods=['GET'])
+def key_by_company(company):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute('SELECT * FROM Keyy WHERE company = %s', (company,))
+        data = cur.fetchone()
+    finally:
+        cur.close()
+        conn.close()
+
+    if data:
+        return jsonify({
+            'currentprice': data[0],
+            'dividendrate': data[1],
+            'bidaskspread': data[2],
+            'fiftytwoweekhigh': data[3],
+            'fiftytwoweeklow': data[4],
+            'marketcap': data[5],
+            'roe': data[6],
+            'pegratio': data[7]
+        })
+    return jsonify({}), 404
+
 @app.route('/Curr',methods=['GET'])
 def curr():
     return 'Index Page'
@@ -71,6 +95,20 @@ def noncurr():
 @app.route('/Flow',methods=['GET'])
 def flow():
     return 'Index Page'
+
+@app.route('/prices/<company>', methods=['GET'])
+def prices_by_company(company):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute('SELECT Year, Price FROM Pricees WHERE Company = %s ORDER BY Year', (company,))
+        rows = cur.fetchall()
+    finally:
+        cur.close()
+        conn.close()
+
+    series = [{ 'year': r[0], 'price': float(r[1]) } for r in rows]
+    return jsonify(series)
 
 @app.route('/BlackRock',methods=['GET'])
 def blackrock():

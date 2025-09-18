@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PriceChart from './PriceChart';
 
 export function MicrosoftMain() {
   const [keyData, setKeyData] = useState({});
@@ -10,23 +11,13 @@ export function MicrosoftMain() {
 
   const fetchKeyData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/Key');
+      const response = await fetch('http://localhost:5000/key/Microsoft');
+      if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       console.log("Fetched key data:", JSON.stringify(data, null, 2));
       setKeyData(data);
     } catch (error) {
       console.error('Error fetching key data:', error);
-      // Set mock data for testing
-      setKeyData({
-        currentprice: 350.25,
-        dividendrate: 0.75,
-        bidaskspread: 0.12,
-        fiftytwoweekhigh: 384.30,
-        fiftytwoweeklow: 309.45,
-        marketcap: 2600000000000,
-        roe: 0.15,
-        pegratio: 2.1
-      });
     } finally {
       setLoading(false);
     }
@@ -124,7 +115,7 @@ export function MicrosoftMain() {
         />
         <MetricCard 
           title="Dividend Rate" 
-          value={formatPercentage(keyData.dividendrate)}
+          value={formatPercentage((keyData.dividendrate ?? 0) / 100)}
           icon="📈"
         />
         <MetricCard 
@@ -159,31 +150,7 @@ export function MicrosoftMain() {
         />
       </div>
 
-      {/* Summary Section */}
-      <div style={{
-        backgroundColor: '#e3f2fd',
-        padding: '20px',
-        borderRadius: '8px',
-        border: '1px solid #bbdefb'
-      }}>
-        <h3 style={{ margin: '0 0 15px 0', color: '#1976d2' }}>
-          📊 Key Insights
-        </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
-          <div>
-            <strong>Price Range:</strong> {formatCurrency(keyData.fiftytwoweeklow)} - {formatCurrency(keyData.fiftytwoweekhigh)}
-          </div>
-          <div>
-            <strong>Market Cap:</strong> {formatCurrency(keyData.marketcap)}
-          </div>
-          <div>
-            <strong>Dividend Yield:</strong> {formatPercentage(keyData.dividendrate)}
-          </div>
-          <div>
-            <strong>ROE:</strong> {formatPercentage(keyData.roe)}
-          </div>
-        </div>
-      </div>
+      <PriceChart company="Microsoft" />
     </div>
   );
 }

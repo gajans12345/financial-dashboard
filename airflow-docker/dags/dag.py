@@ -189,7 +189,7 @@ with DAG(
                 (0.501, 21.083, 25.187, 2.17, 1.889, 2.559, 1.7735, 'BlackRock');
         """
     )
-
+ like
 
     insert_into_key_table = PostgresOperator(
         task_id='insert_into_key_table',
