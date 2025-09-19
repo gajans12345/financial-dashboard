@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PriceChart from './PriceChart';
+import StackedBarChart from './StackedBarChart';
+import RadarChart from './RadarChart';
+import { CurrentAssetsPieChart, NonCurrentAssetsPieChart } from './PieChart';
+import FlowChart from './FlowChart';
 
 export function MicrosoftMain() {
   const [keyData, setKeyData] = useState({});
@@ -28,7 +32,6 @@ export function MicrosoftMain() {
     const numValue = parseFloat(value);
     if (isNaN(numValue)) return value;
     
-    // Format large numbers with commas
     if (numValue >= 1000000000) {
       return `$${(numValue / 1000000000).toFixed(1)}B`;
     } else if (numValue >= 1000000) {
@@ -75,7 +78,6 @@ export function MicrosoftMain() {
       padding: '20px',
       fontFamily: 'Arial, sans-serif'
     }}>
-      {/* Company Header */}
       <div style={{ 
         textAlign: 'center', 
         marginBottom: '40px',
@@ -101,7 +103,6 @@ export function MicrosoftMain() {
         </p>
       </div>
 
-      {/* Key Metrics Grid */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -151,6 +152,11 @@ export function MicrosoftMain() {
       </div>
 
       <PriceChart company="Microsoft" />
+      <StackedBarChart company="Microsoft" />
+      <RadarChart company="Microsoft" />
+      <CurrentAssetsPieChart company="Microsoft" />
+      <NonCurrentAssetsPieChart company="Microsoft" />
+      <FlowChart company="Microsoft" />
     </div>
   );
 }
